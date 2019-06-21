@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Your Local Vandals</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+        body {background-image: white;
+              font-family: 'Roboto', sans-serif;
+              padding-left: 30px;
+              padding-top: 10px;
+              padding-bottom: 50px;
+              text-align: left;
+              max-width: 500px;
+              margin: auto;}
+        img {
+          width: 700px;
+        }
+        label {
+          display: block;
+          margin: 30px 0 0 0;
+        }
+        h1 {
+          text-align: center;
+        }
+        /* div {
+          text-align: center;
+        } */
+        a {color: black}
+        #headline {font-size: 20px;}
+        #result {font-size: 16px;}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script type=text/javascript>
+      $(function () {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#geog_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 2,
+               });
+            });
+        });
+  </script>
+  <script type=text/javascript>
+      $(function() {
+        $('a#test').bind('click', function() {
+          var geog = document.getElementById('geog_autocomplete').value;
+          $.get('/showresults', {geog: geog},
+              function(data) {
+                $("#result").html(data);
+          });
+          return false;
+        });
+      });
+    </script>
+</head>
+
+<body>
+  <h1><i>Your Local Vandals.</i></h1>
+  <p>Wikipedia is a utopian dream: a free encyclopedia that anyone can edit. Usually,
+    it works pretty well.
+  </p>
+  <p>But some people just like to break stuff.</p><br/>
+  <p>Enter a country, US state, city, or ZIP code to explore anonymous Wikipedia edits from May 2019.</p>
+  <p>For example: Germany, Mississippi, Oakland, 60640</p>
+    {{ form.autocomp }}
+    <a href=# id=test><button class='btn btn-default'>Go!</button></a>
+<br/></br>
+<span id=result></span>
+</body>
+
+</html>
