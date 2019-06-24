@@ -1,4 +1,4 @@
-## Project 5: Exploration and detection of anonymous vandalism of Wikipedia
+## Exploration and detection of anonymous vandalism of Wikipedia
 
 My fifth project at Metis. I started with around 730,000 anonymous edits to English Wikipedia extracted using WMF Quarry (query [here](https://quarry.wmflabs.org/query/36617)), and pulled in data from the ORES API, the Wikipedia API, and the MaxMind GeoLite2 IP geocoding database. I also added similar metadata to a 2015 list of human-labeled revisions used to train the ORES damage-probability model. 
 
